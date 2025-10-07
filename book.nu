@@ -12,7 +12,7 @@ def main [] {
         $menu = $menu + ($"($f)(char nul)icon(char us)thumbnail://($tmpimg).png(char nl)")
     }
 
-    let choice = $menu | rofi -dmenu -show-icons
+    let choice = $menu | rofi -dmenu -show-icons -theme ($env.HOME)/.config/rofi/global.rasi
 
     if $choice != "" {
        ^zathura $choice
