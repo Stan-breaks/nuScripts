@@ -14,6 +14,7 @@ def main [] {
 
     let choice = $menu | rofi -dmenu -show-icons 
 
+    echo $choice
     if $choice != "" {
        ^zathura $choice
     }

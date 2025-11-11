@@ -5,7 +5,7 @@ def main [] {
   let cities = ["Ottawa","Nairobi"]
 
   let cache_valid = if ($cache_file | path exists ) {
-    ls $cache_file | get modified | first | (date now) - $in | $in >= 1hr
+    ls $cache_file | get modified | first | (date now) - $in | $in <= 1hr
   } else {
     false
   }
