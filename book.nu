@@ -8,7 +8,6 @@ def display [filePath: string ] {
     mut menu = ( $books | par-each { |f|
         if ($f =~ '.pdf') {
            let tmpimg = ("/tmp/" + ($f | path basename | str replace '.pdf' ''))
-           print $tmpimg
            if (not ($"($tmpimg).png" | path exists)) {
               ^pdftoppm -png -singlefile ($"($filePath)/($f)") $tmpimg
            }
