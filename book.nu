@@ -16,8 +16,8 @@ def display [filePath: string ] {
         } else {
            ($"($f)(char nl)")
         }
-    }| str join ""
-  )
+    } | str join ""
+   )
 
     let choice = $menu | rofi -dmenu -show-icons 
 
