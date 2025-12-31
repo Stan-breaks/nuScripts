@@ -5,19 +5,19 @@ def main [] {
 
 def display [filePath: string ] {
     let books = (ls --short-names $filePath | get name)
-    mut menu = ""
-    for f in $books {
+    mut menu = ( $books | par-each { |f|
         if ($f =~ '.pdf') {
            let tmpimg = ("/tmp/" + ($f | path basename | str replace '.pdf' ''))
            print $tmpimg
            if (not ($"($tmpimg).png" | path exists)) {
               ^pdftoppm -png -singlefile ($"($filePath)/($f)") $tmpimg
            }
-           $menu = $menu + ($"($f)(char nul)icon(char us)thumbnail://($tmpimg).png(char nl)")
+          ($"($f)(char nul)icon(char us)thumbnail://($tmpimg).png(char nl)")
         } else {
-           $menu = $menu + ($"($f)(char nl)")
+           ($"($f)(char nl)")
         }
-    }
+    }| str join ""
+  )
 
     let choice = $menu | rofi -dmenu -show-icons 
 
